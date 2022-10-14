@@ -1,0 +1,69 @@
+<style>
+  .column {
+  float: left;
+  width: 33.33%;
+  padding: 25px;
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100px;
+}
+</style>
+
+<div class="container"
+    fxLayout="row"
+    fxLayout.sm="column"
+    fxLayout.xs="column"
+    fxLayoutAlign.gt-md="space-around center"
+    fxLayoutGap="10px" 
+    fxLayoutGap.xs="0">
+
+    <div fxFlex *ngIf="dish">
+      <mat-card>
+
+        <div class="row">
+          
+          <div class = "column">
+            <mat-card-header>
+              <mat-card-title>
+                <h3>{{dish.name | uppercase}}</h3>
+              </mat-card-title>
+            </mat-card-header>
+            <img mat-card-image src={{dish.image}} alt={{dish.name}}> 
+            <mat-card-content>
+              <p>{{dish.description}}
+              </p>
+            </mat-card-content>
+          </div>    
+          <div class = "column">
+            <mat-card-header>
+              <mat-card-title>
+                <h3>Comments</h3>
+              </mat-card-title>
+            </mat-card-header>
+
+            <p *ngFor="let item of dish.comments"> 
+              
+              <BR>{{item.comment }} 
+              <BR>{{item.rating}} Stars
+              <BR>-- {{item.author}} {{item.date | date: 'MMM dd, yyyy'}}
+            </p> 
+          </div> 
+  
+      </div>
+
+
+      </mat-card>
+    </div>
+
+</div>
